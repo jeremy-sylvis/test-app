@@ -30,7 +30,7 @@ function App() {
     </ul>
     <blockquote>
       Optional:
-      <ul><li>design doesnt necessarily matter, but ifg you're inclined, feel free to adjust the css to fit your style.
+      <ul><li>design doesnt necessarily matter, but if you're inclined, feel free to adjust the css to fit your style.
         </li>
         <li>
           Build a backend API to manage the state of the above board
