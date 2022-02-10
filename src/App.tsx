@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 
+import TaskColumn from './components/TaskGroup'
+import TaskBoard from './components/TaskBoard'
+
 function App() {
 
   const description = <>
@@ -42,12 +45,20 @@ function App() {
     </blockquote>
   </>
 
+  const taskGroups = [
+    { title: 'To-Do', tasks: [] },
+    { title: 'In Progress', tasks: [] },
+    { title: 'Done', tasks: [] }
+  ];
+
   return (
     <div className="App">
       <header className="App-header" />
       <div className="instructionContainer">
-        <h1>The App code should start here</h1>
-        {description}
+        <h1>Totally Not Trello</h1>
+      </div>
+      <div className="boardContainer">
+        <TaskBoard taskGroups={taskGroups} />
       </div>
     </div>
   );
