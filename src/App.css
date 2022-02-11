@@ -8,6 +8,12 @@
     height: 720px;
 }
 
+.TaskGroupHeader {
+    width: 50%;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
 .Task {
     margin: auto 5px;
 }
