@@ -1,1 +1,13 @@
+.TaskBoard {
+    height: 720px;
+    display: inline-flex;
+}
 
+.TaskGroup {
+    width: 33%;
+    height: 720px;
+}
+
+.Task {
+    margin: auto 5px;
+}

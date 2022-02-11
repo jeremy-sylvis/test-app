@@ -46,9 +46,9 @@ function App() {
   </>
 
   const taskGroups = [
-    { title: 'To-Do', tasks: [] },
-    { title: 'In Progress', tasks: [] },
-    { title: 'Done', tasks: [] }
+    { title: 'To-Do', tasks: [ { title: 'Layout Task', description: 'Create the component for Task and its layout/styling'}, { title: 'Style Task', description: 'Hit Task with a rough pretty-up pass' } ] },
+    { title: 'In Progress', tasks: [ { title: 'Get familiar with React component trees', description: 'Get a rough foundation of understanding the interplay between a given React component and its child components'} ] },
+    { title: 'Done', tasks: [ { title: 'Set up Node.js', description: 'Install Node.js and any prerequisites/dependencies'} ] }
   ];
 
   return (
