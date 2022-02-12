@@ -53,9 +53,9 @@ function App() {
   ];
 
   const taskGroups = [
-    { title: 'To-Do', isEditable: true, tasks: tasks },
-    { title: 'In Progress', isEditable: false, tasks: tasks},
-    { title: 'Done', isEditable: false, tasks: tasks }
+    { title: 'To-Do', isEditable: true },
+    { title: 'In Progress', isEditable: false },
+    { title: 'Done', isEditable: false }
   ];
 
   return (
@@ -65,7 +65,7 @@ function App() {
         <h1>Totally Not Trello</h1>
       </div>
       <div className="boardContainer">
-        <TaskBoard taskGroups={taskGroups} />
+        <TaskBoard taskGroups={taskGroups} tasks={tasks} />
       </div>
     </div>
   );
