@@ -31,6 +31,7 @@ class TaskGroup extends React.Component {
                 </div>
                 {/* 
                 TODO: Ideally, TaskGroup wouldn't be aware of the state check against its own type to determine whether or not to add this element - ideally, it would be composed in.
+                This is a step in the right direction, I think - the behavior is still controlled from outside rather than being magic.
                 */}
                 {isEditable &&
                     <div className="TaskGroupFooter">
