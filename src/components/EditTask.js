@@ -13,11 +13,11 @@ class EditTask extends React.Component {
     render() {
         return (
             <div className="EditTask">
-                <div className="EditTaskTitle">
+                <div>
                     <input type="text" name="title" placeholder="Task Title" onChange={e => this.setState({title: e.target.value})} />
                 </div>
-                <div className="EditTaskDescription">
-                    <input type="text" name="description" placeholder="Task Description" onChange={e => this.setState({description: e.target.value})} />
+                <div>
+                    <textarea rows="4" name="description" placeholder="Task Description" onChange={e => this.setState({description: e.target.value})} />
                 </div>
             </div>
         )
