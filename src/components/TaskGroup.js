@@ -6,22 +6,35 @@ class TaskGroup extends React.Component {
     constructor(props) {
         super(props);
 
-        let tasks = [];
-        this.props.tasks.forEach((task) => {
-            tasks.push(
-                <Task title={task.title} key={task.title} description={task.description} />
-            );
-        });
-
         this.state = {
-            tasks: tasks,
+            tasks: [],
             isEditing: false
         };
 
         this.startAddTask = this.startAddTask.bind(this);
         this.finishAddTask = this.finishAddTask.bind(this);
+        this.filterTasksByState = this.filterTasksByState.bind(this);
 
         this.editTask = React.createRef();
+        
+        this.filterTasksByState();
+    }
+
+    filterTasksByState() {
+        // Ideally, this would use some sort of ID or Enum value for the state. For now, matching on title will work.
+        let tasks = this.state.tasks;
+
+        this.props.tasks.forEach((task) => {
+            if (task.status == this.props.title) {
+                tasks.push(
+                    <Task title={task.title} key={task.title} description={task.description} />
+                );
+            }
+        });
+
+        this.setState({
+            tasks: tasks
+        });
     }
 
     // Begin the process of adding a new task.

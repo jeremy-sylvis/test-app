@@ -43,10 +43,19 @@ function App() {
   //   </blockquote>
   // </>
 
+  const tasks = [
+    { title: 'Implement moving Task between groups', description: 'We need the ability to move a task to In Progress and/or Done.', status: 'To-Do' },
+    { title: 'Clean up TaskGroup styling', description: 'Give TaskGroup a bit better visual separation and some softened edges', status: 'Done' },
+    { title: 'Layout Task component', description: 'Create the component for Task and its layout/styling', status: 'Done' }, 
+    { title: 'Style Task component', description: 'Hit Task with a rough pretty-up pass', status: 'Done' },
+    { title: 'Get familiar with React component trees', description: 'Get a rough foundation of understanding the interplay between a given React component and its child components', status: 'Done' },
+    { title: 'Set up Node.js', description: 'Install Node.js and any prerequisites/dependencies', status: 'Done' }
+  ];
+
   const taskGroups = [
-    { title: 'To-Do', isEditable: true, tasks: [ { title: 'Layout Task', description: 'Create the component for Task and its layout/styling'}, { title: 'Style Task', description: 'Hit Task with a rough pretty-up pass' } ] },
-    { title: 'In Progress', isEditable: false, tasks: [ { title: 'Get familiar with React component trees', description: 'Get a rough foundation of understanding the interplay between a given React component and its child components'} ] },
-    { title: 'Done', isEditable: false, tasks: [ { title: 'Set up Node.js', description: 'Install Node.js and any prerequisites/dependencies'} ] }
+    { title: 'To-Do', isEditable: true, tasks: tasks },
+    { title: 'In Progress', isEditable: false, tasks: tasks},
+    { title: 'Done', isEditable: false, tasks: tasks }
   ];
 
   return (
