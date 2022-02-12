@@ -27,7 +27,7 @@ class TaskGroup extends React.Component {
         this.props.tasks.forEach((task) => {
             if (task.status == this.props.title) {
                 tasks.push(
-                    <Task title={task.title} key={task.title} description={task.description} />
+                    <Task task={task} key={task.title} demoteTaskAction={this.props.demoteTaskAction} promoteTaskAction={this.props.promoteTaskAction} />
                 );
             }
         });
@@ -46,17 +46,22 @@ class TaskGroup extends React.Component {
 
     // End the process of adding a task, creating a new Task component with the resulting title and description.
     finishAddTask() {
-        let tasks = this.state.tasks;
+        let tasks = this.props.tasks;
         let editTask = this.editTask.current;
 
-        tasks.push(
-            <Task key={editTask.state.title} title={editTask.state.title} description={editTask.state.description} />
-        );
+        let newTask = { 
+            title: editTask.state.title,
+            description: editTask.state.description,
+            statusId: 0
+        }
+
+        tasks.push(newTask);
 
         this.setState({
-            isEditing: false,
-            tasks: tasks
+            isEditing: false
         });
+
+        this.filterTasksByState();
     }
 
     render() {
