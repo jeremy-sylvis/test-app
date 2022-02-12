@@ -14,9 +14,33 @@
     font-weight: bold;
 }
 
+.TaskGroupFooter {
+    padding: 5px;
+}
+
 .Task {
     margin: 5px;
     border: 1px solid;
+}
+
+.Task * {
+    width: 100%;
+}
+
+.EditTask {
+    margin: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.EditTask * {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.EditTask * * {
+    width: 94%;
 }
 
 .TaskTitle {
