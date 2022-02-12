@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TaskGroup from './TaskGroup';
 
 class TaskBoard extends React.Component {
