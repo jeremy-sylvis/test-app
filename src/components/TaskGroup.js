@@ -3,10 +3,6 @@ import Task from './Task'
 import EditTask from './EditTask'
 
 class TaskGroup extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     addTask() {
         //show the "add task" ui
     };
@@ -20,6 +16,11 @@ class TaskGroup extends React.Component {
             );
         });
 
+        var isEditable = false;
+        if (this.props.isEditable) {
+            isEditable = true;
+        }
+
         return (
             <div className="TaskGroup">
                 <div className="TaskGroupHeader">
@@ -31,9 +32,11 @@ class TaskGroup extends React.Component {
                 {/* 
                 TODO: Ideally, TaskGroup wouldn't be aware of the state check against its own type to determine whether or not to add this element - ideally, it would be composed in.
                 */}
-                <div className="TaskGroupFooter">
-                    <button onClick={this.addTask}>+ Add a Card</button>
-                </div>
+                {isEditable &&
+                    <div className="TaskGroupFooter">
+                        <button onClick={this.addTask}>+ Add a Card</button>
+                    </div>
+                }
             </div>
         )
     }
