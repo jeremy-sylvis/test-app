@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import Task from './Task'
+import EditTask from './EditTask'
 
 class TaskGroup extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    addTask() {
+        //show the "add task" ui
+    };
 
     render() {
         const tasks = [];
@@ -22,6 +27,12 @@ class TaskGroup extends React.Component {
                 </div>
                 <div className="TaskGroupTaskList">
                     {tasks}
+                </div>
+                {/* 
+                TODO: Ideally, TaskGroup wouldn't be aware of the state check against its own type to determine whether or not to add this element - ideally, it would be composed in.
+                */}
+                <div className="TaskGroupFooter">
+                    <button onClick={this.addTask}>+ Add a Card</button>
                 </div>
             </div>
         )
