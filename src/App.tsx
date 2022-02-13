@@ -1,6 +1,9 @@
+import { isConstructorDeclaration } from 'typescript';
 import './App.css';
 
 import TaskBoard from './components/TaskBoard'
+import TaskDataSource from './data/TaskDataSource';
+import TaskStateManager from './behavior/TaskStateManager';
 
 function App() {
 
@@ -43,20 +46,14 @@ function App() {
   //   </blockquote>
   // </>
 
-  const tasks = [
-    { title: 'Implement moving Task between groups', description: 'We need the ability to move a task to In Progress and/or Done.', status: 'To-Do' },
-    { title: 'Clean up TaskGroup styling', description: 'Give TaskGroup a bit better visual separation and some softened edges', status: 'Done' },
-    { title: 'Layout Task component', description: 'Create the component for Task and its layout/styling', status: 'Done' }, 
-    { title: 'Style Task component', description: 'Hit Task with a rough pretty-up pass', status: 'Done' },
-    { title: 'Get familiar with React component trees', description: 'Get a rough foundation of understanding the interplay between a given React component and its child components', status: 'Done' },
-    { title: 'Set up Node.js', description: 'Install Node.js and any prerequisites/dependencies', status: 'Done' }
+  const taskGroups = [
+    { title: 'To-Do', filterId: 0, isEditable: true },
+    { title: 'In Progress', filterId: 1, isEditable: false },
+    { title: 'Done', filterId: 2, isEditable: false }
   ];
 
-  const taskGroups = [
-    { title: 'To-Do', isEditable: true },
-    { title: 'In Progress', isEditable: false },
-    { title: 'Done', isEditable: false }
-  ];
+  let taskDataSource = new TaskDataSource();
+  let taskStateManager = new TaskStateManager();
 
   return (
     <div className="App">
@@ -65,7 +62,7 @@ function App() {
         <h1>Totally Not Trello</h1>
       </div>
       <div className="boardContainer">
-        <TaskBoard taskGroups={taskGroups} tasks={tasks} />
+        <TaskBoard taskGroups={taskGroups} taskDataSource={taskDataSource} taskStateManager={taskStateManager} />
       </div>
     </div>
   );

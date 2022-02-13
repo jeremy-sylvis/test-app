@@ -1,40 +1,59 @@
 import React from 'react';
 import Task from './Task'
 import EditTask from './EditTask'
+import { default as TaskModel} from '../data/Task';
 
 class TaskGroup extends React.Component {
     constructor(props) {
         super(props);
 
+        let taskData = this.props.taskDataSource.getTasks();
+        let filteredTasks = this.filterTasksByStatusId(taskData);
+
         this.state = {
-            tasks: [],
+            filterId: this.props.filterId,
+            taskData: this.props.taskDataSource.getTasks(),
+            tasks: filteredTasks,
             isEditing: false
         };
 
         this.startAddTask = this.startAddTask.bind(this);
         this.finishAddTask = this.finishAddTask.bind(this);
-        this.filterTasksByState = this.filterTasksByState.bind(this);
+        this.handleTaskChanges = this.handleTaskChanges.bind(this);
 
         this.editTask = React.createRef();
-        
-        this.filterTasksByState();
     }
 
-    filterTasksByState() {
-        // Ideally, this would use some sort of ID or Enum value for the state. For now, matching on title will work.
-        let tasks = this.state.tasks;
+    componentDidMount() {
+        this.props.taskDataSource.addChangeListener(this.handleTaskChanges);
+    }
 
-        this.props.tasks.forEach((task) => {
-            if (task.status == this.props.title) {
-                tasks.push(
-                    <Task task={task} key={task.title} demoteTaskAction={this.props.demoteTaskAction} promoteTaskAction={this.props.promoteTaskAction} />
+    componentWillUnmount() {
+        this.props.taskDataSource.removeChangeListener(this.handleTaskChanges);
+    }
+
+    handleTaskChanges() {
+        let taskData = this.props.taskDataSource.getTasks();
+        let filteredTasks = this.filterTasksByStatusId(taskData);
+
+        this.setState({
+            taskData: this.props.taskDataSource.getTasks(),
+            tasks: filteredTasks
+        });
+    }
+
+    filterTasksByStatusId(tasks) {
+        let filteredTasks = [];
+
+        tasks.forEach((task) => {
+            if (task.statusId === this.props.filterId) {
+                filteredTasks.push(
+                    <Task task={task} key={task.taskId} taskDataSource={this.props.taskDataSource} taskStateManager={this.props.taskStateManager} />
                 );
             }
         });
 
-        this.setState({
-            tasks: tasks
-        });
+        return filteredTasks
     }
 
     // Begin the process of adding a new task.
@@ -46,22 +65,15 @@ class TaskGroup extends React.Component {
 
     // End the process of adding a task, creating a new Task component with the resulting title and description.
     finishAddTask() {
-        let tasks = this.props.tasks;
         let editTask = this.editTask.current;
 
-        let newTask = { 
-            title: editTask.state.title,
-            description: editTask.state.description,
-            statusId: 0
-        }
+        let newTask = new TaskModel(editTask.state.title, editTask.state.description, 0);
 
-        tasks.push(newTask);
+        this.props.taskDataSource.addTask(newTask);
 
         this.setState({
             isEditing: false
         });
-
-        this.filterTasksByState();
     }
 
     render() {
