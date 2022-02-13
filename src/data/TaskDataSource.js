@@ -19,6 +19,12 @@ class TaskDataSource {
     }
 
     createTask(task) {
+        // Simulate an autoincrement PK; determine the next key
+        let keys = this.tasks.map((t) => t.taskId);
+        let maxKey = Math.max(...keys);
+        let nextKey = maxKey + 1;
+        task.taskId = nextKey;
+
         this.tasks.push(task);
 
         this.changeListeners.forEach((c) => c());

@@ -67,9 +67,9 @@ class TaskGroup extends React.Component {
     finishAddTask() {
         let editTask = this.editTask.current;
 
-        let newTask = new TaskModel(editTask.state.title, editTask.state.description, 0);
+        let newTask = new TaskModel(-1, editTask.state.title, editTask.state.description, 0);
 
-        this.props.taskDataSource.addTask(newTask);
+        this.props.taskDataSource.createTask(newTask);
 
         this.setState({
             isEditing: false
