@@ -23,8 +23,8 @@ class TaskStateManager {
     // Promote the given task to the next Task status.
     // If the new task status would be invalid, do nothing.
     promoteTask(task) {
-        var keys = Object.keys(this.taskStates);
-        var max = Math.max(keys);
+        var keys = Object.keys(this.taskStates).map((s) => parseInt(s));
+        var max = Math.max(...keys);
 
         var nextId = task.statusId + 1;
         if (nextId > max) return;
