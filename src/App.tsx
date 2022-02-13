@@ -1,6 +1,8 @@
 import './App.css';
 
 import TaskBoard from './components/TaskBoard'
+import TaskDataSource from './data/TaskDataSource';
+import TaskStateManager from './behavior/TaskStateManager';
 
 function App() {
 
@@ -44,10 +46,13 @@ function App() {
   // </>
 
   const taskGroups = [
-    { title: 'To-Do', isEditable: true, tasks: [ { title: 'Layout Task', description: 'Create the component for Task and its layout/styling'}, { title: 'Style Task', description: 'Hit Task with a rough pretty-up pass' } ] },
-    { title: 'In Progress', isEditable: false, tasks: [ { title: 'Get familiar with React component trees', description: 'Get a rough foundation of understanding the interplay between a given React component and its child components'} ] },
-    { title: 'Done', isEditable: false, tasks: [ { title: 'Set up Node.js', description: 'Install Node.js and any prerequisites/dependencies'} ] }
+    { title: 'To-Do', filterId: 0, isEditable: true },
+    { title: 'In Progress', filterId: 1, isEditable: false },
+    { title: 'Done', filterId: 2, isEditable: false }
   ];
+
+  let taskDataSource = new TaskDataSource();
+  let taskStateManager = new TaskStateManager();
 
   return (
     <div className="App">
@@ -56,7 +61,7 @@ function App() {
         <h1>Totally Not Trello</h1>
       </div>
       <div className="boardContainer">
-        <TaskBoard taskGroups={taskGroups} />
+        <TaskBoard taskGroups={taskGroups} taskDataSource={taskDataSource} taskStateManager={taskStateManager} />
       </div>
     </div>
   );

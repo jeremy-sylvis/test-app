@@ -7,7 +7,7 @@ class TaskBoard extends React.Component {
 
         this.props.taskGroups.forEach((taskGroup) => {
             taskGroups.push(
-                <TaskGroup title={taskGroup.title} tasks={taskGroup.tasks} key={taskGroup.title} isEditable={taskGroup.isEditable} />
+                <TaskGroup title={taskGroup.title} key={taskGroup.title} filterId={taskGroup.filterId} isEditable={taskGroup.isEditable} taskDataSource={this.props.taskDataSource} taskStateManager={this.props.taskStateManager} />
             );
         });
 
